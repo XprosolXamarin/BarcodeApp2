@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:ViewModels="clr-namespace:BarcodeApp2.ViewModels"
+             x:Class="BarcodeApp2.Views.DashboardPage">
+    <ContentPage.BindingContext>
+        <ViewModels:DashboardViewModel/>
+    </ContentPage.BindingContext>
+    <Grid Padding="30" BackgroundColor="#023e8a" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid Padding="0,10" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+            <StackLayout Spacing="20" HorizontalOptions="Start" VerticalOptions="Center">
+                <Image Source="search.png" Aspect="AspectFit" WidthRequest="15" HeightRequest="15"/>
+                <Image Source="user.png" Aspect="AspectFit" WidthRequest="15" HeightRequest="15"/>
+                <Image Source="cart.png" Aspect="AspectFit" WidthRequest="15" HeightRequest="15"/>
+            </StackLayout>
+            <StackLayout Spacing="0" HorizontalOptions="Center" VerticalOptions="Center">
+                <Label Text="Super Store" TextColor="White" FontFamily="ThemeFont" FontSize="40" HorizontalOptions="Center"/>
+                <Label Text="Lahore" Margin="0,-5,0,0" TextColor="White" Opacity="0.5" FontFamily="LightFont" FontSize="20" 
+                       HorizontalOptions="Center"/>
+            </StackLayout>
+        </Grid>
+        <CollectionView x:Name="burgerList" Margin="0,40,0,0" Grid.Row="1" ItemsSource="{Binding Category}" SelectionMode="Single" 
+                        SelectedItem="{Binding SelectedCategory}" VerticalScrollBarVisibility="Never" 
+                        SelectionChangedCommand="{Binding SelectionCommand}">
+            <CollectionView.ItemsLayout>
+                <GridItemsLayout Orientation="Vertical" VerticalItemSpacing="20" HorizontalItemSpacing="20" Span="2"/>
+            </CollectionView.ItemsLayout>
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Frame CornerRadius="30">
+                        <Grid Padding="0" BackgroundColor="WhiteSmoke" WidthRequest="130" HeightRequest="145">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+                            <Image Aspect="AspectFill" Source="{Binding ImageUrl}" WidthRequest="110" HeightRequest="95" 
+                               HorizontalOptions="Center" VerticalOptions="Center"/>
+                            <Label Grid.Row="1" Text="{Binding Name}" TextColor="Black" FontFamily="ThemeFont" 
+                               VerticalOptions="End" HorizontalOptions="Center"/>
+                           <!-- <Label Grid.Row="1" Text="{Binding Details}" TextColor="White" FontFamily="ThemeFont"
+                               VerticalOptions="End" HorizontalOptions="End"/>-->
+                        </Grid>
+                    </Frame>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+            <CollectionView.Footer>
+                <Grid />
+            </CollectionView.Footer>
+        </CollectionView>
+    </Grid>
+
+</ContentPage>
